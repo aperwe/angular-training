@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Playlist }
 
 @Component({
   selector: 'app-playlist-details',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlaylistDetailsComponent implements OnInit {
 
+  playlist: Playlist = {
+    id: 123,
+    name: "Angular hits!",
+    color: "#ff0000",
+    favourite: true
+  };
+
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit() {}
+
   }
 
 }
