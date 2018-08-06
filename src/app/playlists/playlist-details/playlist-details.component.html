@@ -8,3 +8,24 @@
     <dd [style.color]="playlist.color"> {{playlist.color}}</dd>
   </dl>
 </div>
+
+<div>
+  <div class="form-group">
+    <label>Name</label>
+    <input type="text" class="form-control" [value]="playlist.name"
+      (keyup)="playlist.name = $event.target.value">
+  </div>
+
+  <div class="form-group">
+      <label>Favourite</label>
+      <input type="checkbox" [checked]="playlist.favourite"
+        (change)="playlist.favourite = $event.target.checked">
+    </div>
+    
+  <div class="form-group">
+    <label>Color</label>
+    <input type="color" [value]="playlist.color"
+      (change)="playlist.color = $event.target.value">
+  </div>
+
+</div>
