@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Playlist }
+import { Playlist } from "../../models/playlist"
 
 @Component({
   selector: 'app-playlist-details',
@@ -10,10 +10,10 @@ export class PlaylistDetailsComponent implements OnInit {
 
   playlist: Playlist = {
     id: 123,
-    name: "Angular hits!",
+    name: "Angular 2 Not hits!",
     color: "#ff0000",
     favourite: true
-  };
+  }
 
   constructor() { }
 
