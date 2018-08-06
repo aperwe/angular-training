@@ -1,5 +1,5 @@
-<div>
-  <div *ngIf="mode == 'show'">
+<div [ngSwitch]="mode">
+  <div *ngSwitchCase=" 'show' ">
     <dl>
       <dt>Name:</dt>
       <dd>{{playlist.name}}</dd>
@@ -11,7 +11,7 @@
     <input type="button" value="Edit" class="btn btn-info" (click)="edit()">
   </div>
 
-  <div *ngIf="mode == 'edit'">
+  <div *ngSwitchCase=" 'edit' ">
     <div class="form-group">
       <label>Name</label>
       <input type="text" class="form-control" [(ngModel)]="playlist.name">
