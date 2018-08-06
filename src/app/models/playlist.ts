@@ -2,7 +2,7 @@ export interface Playlist {
     id: number;
     name: string;
     favourite: boolean;
-    tracks: Track[];
+    tracks?: Track[];
     color: string;
 }
 

@@ -19,6 +19,5 @@ export class PlaylistDetailsComponent implements OnInit {
 
   ngOnInit() {}
 
-  }
-
 }
+
