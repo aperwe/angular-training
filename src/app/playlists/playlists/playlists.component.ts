@@ -23,7 +23,12 @@ export class PlaylistsComponent implements OnInit {
     }
   ];
 
-  selected:Playlist
+  savePlaylist(playlist) {
+    const index = this.playlists.findIndex(old => old.id == playlist.id);
+    this.playlists.splice(index, 1, playlist);
+  }
+
+  selected: Playlist
 
   constructor() { }
 

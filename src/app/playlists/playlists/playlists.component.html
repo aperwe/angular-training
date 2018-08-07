@@ -11,7 +11,9 @@
     {{selected | json}}
   </div>
   <div class="col">
-    <app-playlist-details [playlist]="selected" *ngIf="selected">
+    <app-playlist-details [playlist]="selected"
+      (playlistSave) = " savePlaylist($event) "
+      *ngIf="selected">
 
     </app-playlist-details>
 
