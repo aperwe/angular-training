@@ -7,7 +7,8 @@ import { Playlist } from '../../models/playlist';
   styleUrls: ['./items-list.component.css']
 })
 export class ItemsListComponent implements OnInit {
-  selected: Playlist | null;
+
+  @Input() selected: Playlist | null;
 
   @Input() items: Playlist[];
 
