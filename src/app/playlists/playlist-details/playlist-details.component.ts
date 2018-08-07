@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Playlist } from "../../models/playlist"
 
 @Component({
@@ -8,12 +8,7 @@ import { Playlist } from "../../models/playlist"
 })
 export class PlaylistDetailsComponent implements OnInit {
 
-  playlist: Playlist = {
-    id: 123,
-    name: "Angular 2 Not hits!",
-    color: "#ff0000",
-    favourite: true
-  }
+  @Input() playlist: Playlist
 
   constructor() { }
 

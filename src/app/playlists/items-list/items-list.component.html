@@ -2,12 +2,12 @@
 
 <div class="list-group">
   <div class="list-group-item"
-    *ngFor="let playlist of playlists let i = index trackBy trackFn"
-    (click)="selected = playlist"
+    *ngFor="let playlist of items let i = index trackBy trackFn"
+    (click)="select(playlist)"
     [class.active]=" playlist == selected "
 
     [ngClass]="{placki: true}"
     >
-    {{i+1}}. {{playlist.name}}
+    {{i+1}}. {{playlist.name}} [doadas]
   </div>
 </div>
