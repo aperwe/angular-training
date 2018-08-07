@@ -26,6 +26,7 @@ export class PlaylistsComponent implements OnInit {
   savePlaylist(playlist) {
     const index = this.playlists.findIndex(old => old.id == playlist.id);
     this.playlists.splice(index, 1, playlist);
+    this.selected = playlist;
   }
 
   selected: Playlist
