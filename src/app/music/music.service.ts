@@ -13,27 +13,17 @@ export class MusicService {
     @Inject("MUSIC_API_URL")
     private api_url: string,
     private http: HttpClient,
-    private security: SecurityService
   ) { }
 
   getAlbums() {
-    return this.http.get<AlbumsResponse>(this.api_url, {
-      headers: {
-        Authorization: "Bearer " + this.security.getToken()
-      },
-      params: {
-        type: "album",
-        q: ""
-      }
-    }).pipe(
-      map(response => response.albums.items),
-      catchError((error: Error) => {
-        if (error instanceof HttpErrorResponse) {
-          console.log(error.error.error.message);
+    return this.http
+      .get<AlbumsResponse>(this.api_url, {
+        params: {
+          type: "album",
+          q: "batman"
         }
-        return throwError(Error('Unknown Server error'));
-      })
-    );
+      }).pipe(
+        map(response => response.albums.items));
   }
 
   /// Unused
