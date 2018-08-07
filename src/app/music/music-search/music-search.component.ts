@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
 import { Album } from 'src/app/models/album';
+import { MusicService } from '../music.service';
 
 @Component({
   selector: 'app-music-search',
@@ -8,51 +9,14 @@ import { Album } from 'src/app/models/album';
 })
 export class MusicSearchComponent implements OnInit {
 
-  @Input()
-  albums: Album[] = [
-    {
-      id: "123",
-      name: "Test Album again",
-      images: [
-        {
-          width: 300, height: 300,
-          url: "https://placekitten.com/16/16"
-        }
-      ]
-    },
-    {
-      id: "124",
-      name: "Test Album 2",
-      images: [
-        {
-          width: 300, height: 300,
-          url: "https://placekitten.com/18/18"
-        }
-      ]
-    },
-    {
-      id: "125",
-      name: "Test Album again",
-      images: [
-        {
-          width: 300, height: 300,
-          url: "https://placekitten.com/20/20"
-        }
-      ]
-    },
-    {
-      id: "126",
-      name: "Test Album again",
-      images: [
-        {
-          width: 300, height: 300,
-          url: "https://placekitten.com/22/22"
-        }
-      ]
-    },
-  ];
+  albums: Album[];
 
-  constructor() { }
+  constructor(
+    //@Inject("MusicService")
+    private musicService:MusicService
+  ) { 
+    this.albums = this.musicService.getAlbums()
+  }
 
   ngOnInit() {
   }

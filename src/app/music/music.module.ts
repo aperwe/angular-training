@@ -6,6 +6,8 @@ import { MusicSearchComponent } from './music-search/music-search.component';
 import { SearchFormComponent } from './search-form/search-form.component';
 import { AlbumGridComponent } from './album-grid/album-grid.component';
 import { AlbumItemComponent } from './album-item/album-item.component';
+import { environment } from '../../environments/environment';
+import { MusicService } from './music.service';
 
 @NgModule({
   imports: [
@@ -17,6 +19,20 @@ import { AlbumItemComponent } from './album-item/album-item.component';
     SearchFormComponent,
     AlbumGridComponent,
     AlbumItemComponent],
-  exports: [MusicSearchComponent]
+  exports: [MusicSearchComponent],
+  providers: [
+    {
+      provide: "MUSIC_API_URL",
+      useValue: environment.music_search.api_url
+    },
+    // {
+    //   provide: MusicService,
+    //   useClass: MusicService
+
+    //   }
+    // }
+    MusicService
+  ]
 })
+
 export class MusicModule { }
