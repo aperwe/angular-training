@@ -27,7 +27,6 @@ export class SecurityService {
     // Build URL
     const redirectURL = this.config.auth_url + "?" + params.toString();
     console.log(redirectURL);
-    params.toString();
 
     // Redirect
     window.location.replace(redirectURL);

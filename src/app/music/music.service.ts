@@ -1,7 +1,9 @@
 import { Injectable, Inject } from '@angular/core';
 import { Album } from 'src/app/models/album';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { SecurityService } from 'src/app/security/security.service';
+import { map, catchError } from "rxjs/operators";
+import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,23 +17,26 @@ export class MusicService {
   ) { }
 
   getAlbums() {
-    this.http.get<{}>(this.api_url, {
+    return this.http.get<AlbumsResponse>(this.api_url, {
       headers: {
         Authorization: "Bearer " + this.security.getToken()
       },
       params: {
         type: "album",
-        q: "batman"
+        q: ""
       }
-    })
-      .subscribe(response => {
-        console.log(response)
+    }).pipe(
+      map(response => response.albums.items),
+      catchError((error: Error) => {
+        if (error instanceof HttpErrorResponse) {
+          console.log(error.error.error.message);
+        }
+        return throwError(Error('Unknown Server error'));
       })
-
-    console.log('tutaj');
-    return this.albums;
+    );
   }
 
+  /// Unused
   albums: Album[] = [
     {
       id: "123",
@@ -40,36 +45,6 @@ export class MusicService {
         {
           width: 300, height: 300,
           url: "https://placekitten.com/16/16"
-        }
-      ]
-    },
-    {
-      id: "124",
-      name: "Test Album 2",
-      images: [
-        {
-          width: 300, height: 300,
-          url: "https://placekitten.com/24/24"
-        }
-      ]
-    },
-    {
-      id: "125",
-      name: "Test Album again",
-      images: [
-        {
-          width: 300, height: 300,
-          url: "https://placekitten.com/32/32"
-        }
-      ]
-    },
-    {
-      id: "126",
-      name: "Test Album 126",
-      images: [
-        {
-          width: 300, height: 300,
-          url: "https://placekitten.com/64/64"
         }
       ]
     },
@@ -85,4 +60,10 @@ export class MusicService {
     },
   ];
 
+}
+
+interface AlbumsResponse {
+  albums: {
+    items: Album[];
+  }
 }

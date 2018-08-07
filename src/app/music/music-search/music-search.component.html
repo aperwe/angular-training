@@ -1,7 +1,3 @@
-<p>
-  music-search works!
-</p>
-
 <div class="row">
   <div class="col">
     <app-search-form></app-search-form>
@@ -9,6 +5,9 @@
 </div>
 <div class="row">
   <div class="col">
+    <p class="alert alert-danger" *ngIf="message">
+      {{message}}
+    </p>
     <app-album-grid [albums]="albums"></app-album-grid>
   </div>
 </div>

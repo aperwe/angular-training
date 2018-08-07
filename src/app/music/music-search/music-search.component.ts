@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { Album } from 'src/app/models/album';
 import { MusicService } from '../music.service';
+import { error } from 'util';
 
 @Component({
   selector: 'app-music-search',
@@ -11,14 +12,20 @@ export class MusicSearchComponent implements OnInit {
 
   albums: Album[];
 
-  constructor(
-    //@Inject("MusicService")
-    private musicService:MusicService
-  ) { 
-    this.albums = this.musicService.getAlbums()
-  }
+  message: string;
+
+  constructor(private musicService: MusicService) { }
 
   ngOnInit() {
+    this.musicService
+      .getAlbums()
+      .subscribe(
+        albums => (this.albums = albums),
+        (error: Error) => {
+          this.message = error.message;
+        }
+      );
   }
+
 
 }
