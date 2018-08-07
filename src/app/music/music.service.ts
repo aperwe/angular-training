@@ -20,7 +20,7 @@ export class MusicService {
         Authorization: "Bearer " + this.security.getToken()
       },
       params: {
-        type: "albums",
+        type: "album",
         q: "batman"
       }
     })

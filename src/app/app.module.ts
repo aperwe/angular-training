@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { PlaylistsModule } from './playlists/playlists.module';
 import { MusicModule } from './music/music.module';
 import { SecurityModule } from './security/security.module';
-import { SECURITY_CONFIG } from './security/security.service';
+import { SECURITY_CONFIG, SecurityService } from './security/security.service';
 import { environment } from '../environments/environment';
 
 @NgModule({
@@ -26,4 +26,8 @@ import { environment } from '../environments/environment';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private security: SecurityService) {
+    security.getToken();
+  }
+ }
