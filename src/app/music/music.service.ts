@@ -1,6 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { Album } from 'src/app/models/album';
 import { HttpClient } from '@angular/common/http';
+import { SecurityService } from 'src/app/security/security.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,22 +10,23 @@ export class MusicService {
   constructor(
     @Inject("MUSIC_API_URL")
     private api_url: string,
-    private http: HttpClient
+    private http: HttpClient,
+    private security: SecurityService
   ) { }
 
   getAlbums() {
-    this.http.get(this.api_url, {
+    this.http.get<{}>(this.api_url, {
       headers: {
-        Authorization: "placki!"
+        Authorization: "Bearer " + this.security.getToken()
       },
       params: {
         type: "albums",
         q: "batman"
       }
     })
-    .subscribe(response => {
-      console.log(response)
-    })
+      .subscribe(response => {
+        console.log(response)
+      })
 
     console.log('tutaj');
     return this.albums;

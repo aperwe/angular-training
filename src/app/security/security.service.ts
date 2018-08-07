@@ -1,11 +1,12 @@
-import { Injectable, InjectionToken } from '@angular/core';
+import { Injectable, InjectionToken, Inject } from '@angular/core';
 
+export const SECURITY_CONFIG = new InjectionToken<SecurityConfig>("Security Service Config");
 @Injectable({
   providedIn: 'root'
 })
 export class SecurityService {
 
-  constructor() { }
+  constructor(@Inject(SECURITY_CONFIG) config: SecurityConfig) { }
 
   authorize() {
 
@@ -30,4 +31,3 @@ export interface SecurityConfig {
   redirect_uri: string;
 }
 
-export const SECURITY_CONFIG = new InjectionToken<SecurityConfig>("Security Service Config");
