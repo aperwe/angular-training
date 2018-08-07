@@ -7,6 +7,7 @@ import { Playlist } from '../../models/playlist';
   styleUrls: ['./items-list.component.css']
 })
 export class ItemsListComponent implements OnInit {
+  selected: Playlist | null;
 
   playlists: Playlist[] = [
     {
@@ -28,12 +29,12 @@ export class ItemsListComponent implements OnInit {
     return elem.id;
   }
   constructor() {
-    setInterval(() => {
+/*     setInterval(() => {
       this.playlists.unshift(this.playlists.pop());
       this.playlists.unshift(this.playlists.pop());
       this.playlists.unshift(this.playlists.pop());
     }, 1500)
-  }
+ */  }
 
   ngOnInit() {
   }
