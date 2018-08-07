@@ -4,6 +4,9 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { PlaylistsModule } from './playlists/playlists.module';
 import { MusicModule } from './music/music.module';
+import { SecurityModule } from './security/security.module';
+import { SECURITY_CONFIG } from './security/security.service';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -12,9 +15,15 @@ import { MusicModule } from './music/music.module';
   imports: [
     BrowserModule,
     PlaylistsModule,
-    MusicModule
+    MusicModule,
+    SecurityModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: SECURITY_CONFIG,
+      useValue: environment.security
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

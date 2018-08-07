@@ -1,5 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { Album } from 'src/app/models/album';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -7,13 +8,28 @@ import { Album } from 'src/app/models/album';
 export class MusicService {
   constructor(
     @Inject("MUSIC_API_URL")
-    private api_url: string
+    private api_url: string,
+    private http: HttpClient
   ) { }
 
   getAlbums() {
+    this.http.get(this.api_url, {
+      headers: {
+        Authorization: "placki!"
+      },
+      params: {
+        type: "albums",
+        q: "batman"
+      }
+    })
+    .subscribe(response => {
+      console.log(response)
+    })
+
+    console.log('tutaj');
     return this.albums;
   }
-  
+
   albums: Album[] = [
     {
       id: "123",
@@ -31,7 +47,7 @@ export class MusicService {
       images: [
         {
           width: 300, height: 300,
-          url: "https://placekitten.com/18/18"
+          url: "https://placekitten.com/24/24"
         }
       ]
     },
@@ -41,7 +57,7 @@ export class MusicService {
       images: [
         {
           width: 300, height: 300,
-          url: "https://placekitten.com/20/20"
+          url: "https://placekitten.com/32/32"
         }
       ]
     },
@@ -51,7 +67,7 @@ export class MusicService {
       images: [
         {
           width: 300, height: 300,
-          url: "https://placekitten.com/22/22"
+          url: "https://placekitten.com/64/64"
         }
       ]
     },
@@ -61,7 +77,7 @@ export class MusicService {
       images: [
         {
           width: 300, height: 300,
-          url: "https://placekitten.com/24/24"
+          url: "https://placekitten.com/128/128"
         }
       ]
     },

@@ -8,11 +8,13 @@ import { AlbumGridComponent } from './album-grid/album-grid.component';
 import { AlbumItemComponent } from './album-item/album-item.component';
 import { environment } from '../../environments/environment';
 import { MusicService } from './music.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
     CommonModule,
-    MusicRoutingModule
+    MusicRoutingModule,
+    HttpClientModule
   ],
   declarations: [
     MusicSearchComponent,
